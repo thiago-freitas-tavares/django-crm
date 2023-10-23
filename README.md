@@ -38,65 +38,108 @@ Always activate the virtual environment on the cmd terminal when oppening the VS
 C:\Users\Xis\OneDrive\Documentos\VSCodeProjects\django-crm\venv\Scripts\activate
 ctrl + shift + p -> Python: Select Interpreter -> Select Virtual Environment Interpreter
 
-11. Open Project Folder
-12. dcrm/settings.py: add website to the INSTALLED_APPS
-13. dcrm/settings.py: change the default DATABASES ENGINE from sqlite3 to mysql
-14. dcrm/settings.py: change the NAME of the DB and add MySQL USER/PASSWORD/HOST/PORT
+11. Open Project Folder (second folder without the venv)
+12. dcrm/settings.py: add website to the INSTALLED_APPS.
+13. dcrm/settings.py: change the default DATABASES ENGINE from sqlite3 to mysql.
+14. dcrm/settings.py: change the NAME of the DB and add MySQL USER/PASSWORD/HOST/PORT.
 
 ## Create MySQL Connection and Database
 
-- VS Code
+- VS Code:
 
 15. DCRM: New File -> mydb.py
 16. mydb.py: import mysql.connector, create a variable to make the connection, prepare a cursor and create the database.
-17. mydb.py: Run Python File (create the DB at MySQL)
+17. mydb.py: Run Python File (creates the DB at MySQL)
 18. (venv) cmd terminal: python manage.py migrate (push standard Django tables to the DB)
 
 ## Create Super User and Run Server
 
-18. (venv) cmd terminal: python manage.py createsuperuser (admin/admin123)
-19. (venv) cmd terminal: python manage.py runserver (http://127.0.0.1:8000/)
+19. (venv) cmd terminal: python manage.py createsuperuser (admin/admin123)
+20. (venv) cmd terminal: python manage.py runserver (http://127.0.0.1:8000/)
 
 ## Version Control with Git
 
-20. git config --global user.name "Thiago Tavares"
-21. git config --global user.email "tfreitast88@gmail.com"
-22. git config --global push.default matching
-23. git config --global alias.co checkout
-24. git init
-25. git add .
-26. git status
-27. git commit -m "project, app and database"
-28. git remote add origin https://github.com/thiago-freitas-tavares/django-crm.git`
-29. git push -u origin main
+- Git Bash:
+
+21. git config --global user.name "Thiago Tavares"
+22. git config --global user.email "tfreitast88@gmail.com"
+23. git config --global push.default matching
+24. git config --global alias.co checkout
+25. git init
+26. git add .
+27. git status
+28. git commit -m "project, app and database"
+29. git remote add origin https://github.com/thiago-freitas-tavares/django-crm.git`
+30. git push -u origin main
 
 ## Build Basic App
 
-30. website: New Folder -> templates
-31. website/templates: New File -> index.html (template)
-32. website/views.py: create fisrt view function called index (view)
-33. website: New File -> urls.py
-34. website/urls.py: import path and views to create a URL to the home page (URL)
-35. dcrm/urls.py: import include and add website.urls.py path to the urlpatterns.
-36. website/templates: New File -> base.html (base to every page of the website)
-37. https://getbootstrap.com: Docs -> Quick Start 2 -> Copy to clipboard
+- VS Code:
+
+31. website: New Folder -> templates
+32. website/templates: New File -> index.html (template)
+33. website/views.py: create fisrt view function called index (view).
+34. website: New File -> urls.py
+35. website/urls.py: import path and views to create a URL to the home page (URL).
+36. dcrm/urls.py: import include and add website.urls.py path to the urlpatterns.
+37. website/templates: New File -> base.html (base to every page of the website)
+38. https://getbootstrap.com: Docs -> Quick Start 2 -> Copy to clipboard
     Bootstrap is a front-end framework in HTML, CSS and JavaScript.
-38. website/templates/base.html: Paste code (every page of the website will refer to this doc)
-39. website/templates/base.html: Change the `title` to Django CRM
-40. website/templates/base.html: At `body` remove the `h1` tag and add a `block content` in order to pull content from the webpages.
-41. website/templates/index.html: `extends base.html` and add a `block content` to be pulled
-42. website/templates/base.html: `block content` inside a `div` container tag for formatting
+39. website/templates/base.html: Paste code (every page of the website will refer to this doc)
+40. website/templates/base.html: Change the `title` to Django CRM.
+41. website/templates/base.html: At `body` remove the `h1` tag and add a `block content` in order to pull content from the webpages documents.
+42. website/templates/index.html: `extends base.html` and add a `block content` to be pulled.
+43. website/templates/base.html: `block content` inside a `div` container tag for formatting.
 
 ## Create and Format Navbar
 
-43. website/templates: New File -> navbar.html
-44. https://getbootstrap.com: Docs -> Components (Navbar) -> Copy to clipboard (all sub-components)
-45. website/templates/navbar.html: Paste code
-46. website/templates/base.html: include navbar.html
-47. website/templates/navbar.html: change `nav` tag `class` to dark mode (navbar-dark bg-dark)
-48. website/templates/navbar.html: change `a` tag to Django CRM and `href` to the home page
-49. website/templates/navbar.html: remove Home, Dropdown, Disabled and the Search tool.
+44. website/templates: New File -> navbar.html
+45. https://getbootstrap.com: Docs -> Components (Navbar) -> Copy to clipboard (all sub-components)
+46. website/templates/navbar.html: Paste code.
+47. website/templates/base.html: include 'navbar.html'.
+48. website/templates/navbar.html: change `nav` tag `class` to dark mode (navbar-dark bg-dark).
+49. website/templates/navbar.html: change `a` tag to Django CRM and `href` to the home page.
+50. website/templates/navbar.html: remove Home, Dropdown, Disabled and the Search tool (won't need).
 
-## Users Log in and Log out
+## Users Log in
 
-50. website/views.py: import Django authentication system and pop-up messages
+51. website/views.py: import Django authentication system and pop-up messages.
+52. website/templates/index.html: we want the login page to be the home page, case the user is not logged in, so we create a login form with HTTP `POST` method inside the block content, pointing to the home page.
+53. https://getbootstrap.com: Docs -> Forms (Overview) -> Copy to clipboard
+54. website/templates/index.html: Paste code after csrf_token (cross-site request forgery token to avoid malicious attacks).
+55. website/templates/index.html: remove email label, change input type to text, include name/placeholder/required and remove id/aria.
+56. website/templates/index.html: remove password label, include input name/placeholder/required and remove id.
+57. website/templates/index.html: remove the checkbox.
+58. website/templates/index.html: change button class "btn-primary" (blue) to "btn-secondary" (gray) and name to Login.
+59. website/templates/index.html: create an `if` block so the login page is the home page, case the user is not logged in.
+60. website/views.py: since the loggin page may also be the home page, we check if the HTTP request method is `POST` (sending data) or `GET` (requesting data) inside the index view function.
+61. website/views.py: if `POST`, save username/password input in the username/password variables.
+62. website/views.py: authenticate with Django's function and check if user variable is not `NULL`.
+63. website/views.py: log the user in, showing a success message, and redirect (import function) to the home page.
+64. website/views.py: `else` (if user is None), show an error message and redirect to the home page.
+65. website/views.py: `else` (if HTTP request method is not `POST`), render the index.html page.
+66. website/templates/base.html: create an `if` and `for` block to display the messages from the index view function.
+67. https://getbootstrap.com: Docs -> Components (Alerts) -> Copy to clipboard (Dismissing)
+68. website/templates/base.html: Paste code inside the `for` block and change the bootstrap standard message.
+
+## Users Log out
+
+69. website/views.py: create `logout_user` view function.
+70. website/urls.py: create an URL to the `logout_user` view function.
+71. website/views.py: use Django's logout function to log the user out, showing a success message, and redirect to the home page.
+72. website/templates/navbar.html: change bootsprat `nav-item` `a` tag to Logout and `href` to the logout page.
+73. website/templates/navbar.html: `if` user is logged in the `nav-item` should be Logout, `else`, it should be Login.
+
+## Register Users
+
+We can add users manually through the admin section, but we also want people to register on their own in the webpage.
+
+74. website/views.py: create `register_user` view function.
+75. website/urls.py: create an URL to the `register_user` view function.
+76. website/templates: New File -> register.html
+77. website/views.py: `return` render register.html at `register_user` view function.
+78. website/templates/register.html: `extends base.html` and add a `block content` to be pulled.
+79. website/templates/navbar.html: include a `nav-item` to the register page, case the user is logged out.
+80. website: New File -> forms.py
+81. website/forms.py: import User and UserCreationForm
+
