@@ -112,13 +112,13 @@ ctrl + shift + p -> Python: Select Interpreter -> Select Virtual Environment Int
 57. website/templates/index.html: remove the checkbox.
 58. website/templates/index.html: change button class "btn-primary" (blue) to "btn-secondary" (gray) and name to Login.
 59. website/templates/index.html: create an `if` block so the login page is the home page, case the user is not logged in.
-60. website/views.py: since the loggin page may also be the home page, we check if the HTTP request method is `POST` (sending data) or `GET` (requesting data) inside the index view function.
+60. website/views.py: since the loggin page may also be the home page, we check if the HTTP request method is `POST` (sending data) or `GET` (requesting data) inside the `index` view function.
 61. website/views.py: if `POST`, save username/password input in the username/password variables.
 62. website/views.py: authenticate with Django's function and check if user variable is not `NULL`.
 63. website/views.py: log the user in, showing a success message, and redirect (import function) to the home page.
 64. website/views.py: `else` (if user is None), show an error message and redirect to the home page.
-65. website/views.py: `else` (if HTTP request method is not `POST`), render the index.html page.
-66. website/templates/base.html: create an `if` and `for` block to display the messages from the index view function.
+65. website/views.py: `else` (if HTTP request method is not `POST`), render the `index.html` page.
+66. website/templates/base.html: create an `if` and `for` block to display the messages from the `index` view function.
 67. https://getbootstrap.com: Docs -> Components (Alerts) -> Copy to clipboard (Dismissing)
 68. website/templates/base.html: Paste code inside the `for` block and change the bootstrap standard message.
 
@@ -141,5 +141,17 @@ We can add users manually through the admin section, but we also want people to 
 78. website/templates/register.html: `extends base.html` and add a `block content` to be pulled.
 79. website/templates/navbar.html: include a `nav-item` to the register page, case the user is logged out.
 80. website: New File -> forms.py
-81. website/forms.py: import User and UserCreationForm
-
+81. website/forms.py: import `User`/`UserCreationForm` classes from Django's framework and create a `SignUpForm` class inheriting from `UserCreationForm`.
+82. website/forms.py: import Django's `forms` module and set `email`, `first_name` and `last_name` variables.
+83. website/forms.py: variables with empty `labels` (placeholder text instead), `widget` of text input fields with `attributes` to style the form. We'll be using bootstrap to style and it requires a class of `form-control`.
+84. website/forms.py: create a class `Meta` to set the form's model and fields.
+85. website/forms.py: create a constructor in the `SignUpForm` class to initialize the variables `username`, `password1` and `password2`.
+86. website/views.py: import the `SignUpForm` class and check if the HTTP request method is `POST` or `GET` inside the `register_user` view function.
+87. website/views.py: if `POST` (user clicking the Submit button), create a `SignUpForm` object with data from the request.
+88. website/views.py: if the form is `valid`, save it and `authenticate`/`login` the user, showing a success message, and redirect to the home page.
+89. website/views.py: `else` (if HTTP request method is not `POST` - user accessing the register page), create a `SignUpForm` object and render the `register.html` page, filling the context dictionary with the form (it passes the form to the register page so we can do something with it).
+90. website/views.py: repeat the render return so the page is reaload in case of errors.
+91. website/templates/register.html: create a form with HTTP `POST` method inside the block content, pointing to the same view (empty `action`).
+92. website/templates/register.html: insert the form (`form.as_p`) after csrf_token and include a Submit button.
+93. https://getbootstrap.com: Docs -> Components (Alerts) -> Copy to clipboard (Dismissing)
+94. website/templates/register.html: Paste code inside the `if form.errors` block and change the bootstrap standard message, including the specific errors with a `for field`/`if field.errors` block.
