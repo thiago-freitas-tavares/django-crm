@@ -158,4 +158,13 @@ We can add users manually through the admin section, but we also want people to 
 
 ## Database Model
 
-95. 
+95. website/models.py: create a class `Record` inheriting `models.Model` to create a table, defining its fields.
+96. website/models.py: create a function `__str__`, which tells Django what to print when it needs to print out an instance of the model.
+97. (venv) cmd terminal: python manage.py makemigrations (this command creates a `0001_initial.py` document inside `website/migrations` folder).
+98. (venv) cmd terminal: python manage.py migrate (push the `website_record` table to the dcrm_db DB).
+99. website/admin.py: import `Record` class from `models.py` and `register` it to the admin site, so we can access the table from there.
+100. http://127.0.0.1:8000/admin/website/record/: add two records manually.
+
+## View Records on Website
+
+101. 
