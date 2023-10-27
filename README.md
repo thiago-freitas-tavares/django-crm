@@ -159,7 +159,7 @@ We can add users manually through the admin section, but we also want people to 
 ## Database Model
 
 95. website/models.py: create a class `Record` inheriting `models.Model` to create a table, defining its fields.
-96. website/models.py: create a function `__str__`, which tells Django what to print when it needs to print out an instance of the model.
+96. website/models.py: create a function `__str__`, which tells Django what to show when it needs to print out an instance of the model.
 97. (venv) cmd terminal: python manage.py makemigrations (this command creates a `0001_initial.py` document inside `website/migrations` folder).
 98. (venv) cmd terminal: python manage.py migrate (push the `website_record` table to the dcrm_db DB).
 99. website/admin.py: import `Record` class from `models.py` and `register` it to the admin site, so we can access the table from there.
@@ -167,4 +167,9 @@ We can add users manually through the admin section, but we also want people to 
 
 ## View Records on Website
 
-101. 
+101. website/views.py: import `Record` class from `models.py` and create a `records` variable to grab everything that is currently on the table.
+102. website/views.py: pass the `records` variable as the context dictionary in the `render` function that is after user's authentication, so we can do something with it at `index.html`.
+103. website/templates/index.html: inside the `if user.is_authenticated` block, create and `if records` and `for record` blocks to show each of records in the home page.
+104. website/templates/index.html: printing `{{ record }}` shows only the `first_name` and `last_name`, as defined at `models.py` `__str__` function, so we print each item separately.
+
+## Bootstrap Table

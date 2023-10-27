@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="col-md-6 offset-md-3">
   {% if user.is_authenticated %}
-  <h1>Hello Giovane Mores</h1>
+    <h1>Records</h1>
+    {% if records %}
+      {% for record in records %}
+        {{ record.id }}
+        {{ record.first_name }}
+        {{ record.last_name }}
+        {{ record.email }}
+        {{ record.phone }}
+        {{ record.address }}
+        {{ record.city }}
+        {{ record.state }}
+        {{ record.zipcode }}
+        {{ record.created_at }}<br/>
+      {% endfor %}
+    {% endif %}
   {% else %}
   <h1>Login</h1>
   <br/>
@@ -32,5 +45,4 @@
   </form>
   {% endif %}
 </div>
-
 {% endblock %}
