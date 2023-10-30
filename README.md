@@ -154,7 +154,7 @@ We can add users manually through the admin section, but we also want people to 
 91. website/templates/register.html: create a form with HTTP `POST` method inside the block content, pointing to the same view (empty `action`).
 92. website/templates/register.html: render the form as paragraph (`form.as_p`) after csrf_token and include a Submit button.
 93. https://getbootstrap.com: Docs -> Components (Alerts) -> Copy to clipboard (Dismissing)
-94. website/templates/register.html: Paste code inside the `if form.errors` block and change the bootstrap standard message, including the specific errors with a `for field`/`if field.errors` block.
+94. website/templates/register.html: Paste code inside the `if form.errors` block and change bootstrap's sample message, including the specific errors with a `for field`/`if field.errors` block.
 
 ## Database Model
 
@@ -169,7 +169,27 @@ We can add users manually through the admin section, but we also want people to 
 
 101. website/views.py: import `Record` class from `models.py` and create a `records` variable to grab everything that is currently on the table.
 102. website/views.py: pass the `records` variable as the context dictionary in the `render` function that is after user's authentication, so we can do something with it at `index.html`.
-103. website/templates/index.html: inside the `if user.is_authenticated` block, create and `if records` and `for record` blocks to show each of records in the home page.
+103. website/templates/index.html: inside the `if user.is_authenticated` block, create an `if records` and `for record` blocks to show each record in the home page.
 104. website/templates/index.html: printing `{{ record }}` shows only the `first_name` and `last_name`, as defined at `models.py` `__str__` function, so we print each item separately.
 
 ## Bootstrap Table
+
+105. https://getbootstrap.com: Docs -> Content (Tables) -> Copy to clipboard (Overview)
+106. website/templates/index.html: Paste code inside the `if use.is_authenticated` block, change bootstrap's first row headers and move the `if records` block to bootstrap's `tbody`, removing bootstrap's sample rows.
+107. website/templates/index.html: change the `table` `class` to the desired bootstap styling (`table-striped` `table-hover` `table-bordered`) and `thead` `class` to `table-dark`.
+
+## Individual Records
+
+108. website/views.py: create `customer_record` view function.
+109. website/urls.py: create an URL to the `custommer_record` view function passing an integer as a primary key (pk).
+110. website/templates: New File -> record.html
+111. website/views.py: add the pk as a `customer_record` parameter and check if user is authenticated.
+112. website/views.py: create a variable to get a single specific object based on its id, and render the `customer.html` page.
+113. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the home page (login page).
+114. website/templates/record.html: `extends base.html` and add a `block content` to be pulled.
+115. website/templates/index.html: add an `a` tag inside the `record.id` `th` tag with `href` to `record/id`.
+116. website/templates/record.html: call `customer_record` passed as context at `customer_record` view function inside the `block content`, but with separate data.
+
+## Bootstrap Card
+
+117. 
