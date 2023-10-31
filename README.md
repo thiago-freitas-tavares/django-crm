@@ -192,4 +192,12 @@ We can add users manually through the admin section, but we also want people to 
 
 ## Bootstrap Card
 
-117. 
+117. https://getbootstrap.com: Docs -> Components (Card) -> Copy to clipboard (Header and footer)
+118. website/templates/record.html: move `id` + `first_name` + `last_name` to the `card-header`.
+119. website/templates/record.html: move the rest to the `card-body` each one as a `card-text`, so there is some spacing between lines and remove the `card-title`.
+119. website/templates/record.html: move the button out of the `card` with `href` back to the home page.
+
+## Delete Record
+
+120. website/templates/record.html: include a delete button.
+121. website/views.py: create `delete_record` view function.
