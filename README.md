@@ -181,7 +181,7 @@ We can add users manually through the admin section, but we also want people to 
 ## Individual Records
 
 108. website/views.py: create `customer_record` view function.
-109. website/urls.py: create an URL to the `custommer_record` view function passing an integer as a primary key (pk).
+109. website/urls.py: create an URL to the `customer_record` view function, passing an integer as a primary key (pk).
 110. website/templates: New File -> record.html
 111. website/views.py: add the pk as a `customer_record` parameter and check if user is authenticated.
 112. website/views.py: create a variable to get a single specific object based on its id, and render the `customer.html` page.
@@ -201,3 +201,7 @@ We can add users manually through the admin section, but we also want people to 
 
 120. website/templates/record.html: include a delete button.
 121. website/views.py: create `delete_record` view function.
+122. website/urls.py: create an URL to the `delete_record` view function, passing an integer as a primary key (pk).
+123. website/views.py: add the pk as a `delete_record` parameter and check if user is authenticated.
+124. website/views.py: create a variable to get a single specific object based on its id and delete it, sending a message and redirect to the home page.
+125. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the home page (login page).
