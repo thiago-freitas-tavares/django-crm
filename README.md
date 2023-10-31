@@ -80,7 +80,7 @@ C:\Users\Xis\OneDrive\Documentos\VSCodeProjects\django-crm\venv\Scripts\activate
 32. website/templates: New File -> index.html (template)
 33. website/views.py: create fisrt `view function` called `index` (view).
 34. website: New File -> urls.py
-35. website/urls.py: import `path` and `views` to create a URL to the home page (URL).
+35. website/urls.py: import `path` and `views` to create a URL to the `home` page (URL).
 36. dcrm/urls.py: import `include` and add `website.urls` path to the `urlpatterns`.
 37. website/templates: New File -> base.html (base to every page of the website)
 38. https://getbootstrap.com: Docs -> Quick Start 2 -> Copy to clipboard
@@ -98,25 +98,25 @@ C:\Users\Xis\OneDrive\Documentos\VSCodeProjects\django-crm\venv\Scripts\activate
 46. website/templates/navbar.html: Paste code.
 47. website/templates/base.html: include `navbar.html`.
 48. website/templates/navbar.html: change `nav` tag `class` to dark mode (navbar-dark bg-dark).
-49. website/templates/navbar.html: change `a` tag to Django CRM and `href` to the home page.
+49. website/templates/navbar.html: change `a` tag to Django CRM and `href` to the `home` page.
 50. website/templates/navbar.html: remove Home, Dropdown, Disabled and the Search tool (won't need).
 
 ## Users Log in
 
-51. website/templates/index.html: we want the login page to be the home page, case the user is not logged in, so we create a login form with HTTP `POST` method inside the block content, pointing to the home page.
+51. website/templates/index.html: we want the login page to be the `home` page, case the user is not logged in, so we create a login form with HTTP `POST` method inside the block content, pointing to the `home` page.
 52. https://getbootstrap.com: Docs -> Forms (Overview) -> Copy to clipboard
 53. website/templates/index.html: Paste code after the `csrf_token` (cross-site request forgery token to avoid malicious attacks).
 54. website/templates/index.html: remove email `label`, change `input` `type` to text, include `name`/`placeholder`/`required` and remove `id`/`aria`.
 55. website/templates/index.html: remove password `label`, include `input` `name`/`placeholder`/`required` and remove `id`.
 56. website/templates/index.html: remove the `checkbox`.
 57. website/templates/index.html: change button class `btn-primary` (blue) to `btn-secondary` (gray) and name to Login.
-58. website/templates/index.html: create an `if` block so the login page is the home page, case the user is not logged in.
+58. website/templates/index.html: create an `if` block so the login page is the `home` page, case the user is not logged in.
 59. website/views.py: import Django authentication system and pop-up messages.
-60. website/views.py: since the loggin page may also be the home page, we check if the HTTP request method is `POST` (sending data) or `GET` (requesting data) inside the `index` view function.
+60. website/views.py: since the loggin page may also be the `home` page, we check if the HTTP request method is `POST` (sending data) or `GET` (requesting data) inside the `index` view function.
 61. website/views.py: if `POST`, save username/password input in the username/password variables.
 62. website/views.py: authenticate with Django's function and check if user variable is not `NULL`.
-63. website/views.py: `if` user is not None, log the user in, showing a success message, and `redirect` (import function) to the home page.
-64. website/views.py: `else` (if user is None), show an error message and `redirect` to the home page (login page).
+63. website/views.py: `if` user is not None, log the user in, showing a success message, and `redirect` (import function) to the `home` page.
+64. website/views.py: `else` (if user is None), show an error message and `redirect` to the `home` page (login page).
 65. website/views.py: `else` (if HTTP request method is not `POST`), render the `index.html` page.
 66. website/templates/base.html: create an `if` and `for` block to display the messages from the `index` view function.
 67. https://getbootstrap.com: Docs -> Components (Alerts) -> Copy to clipboard (Dismissing)
@@ -126,7 +126,7 @@ C:\Users\Xis\OneDrive\Documentos\VSCodeProjects\django-crm\venv\Scripts\activate
 
 69. website/views.py: create `logout_user` view function.
 70. website/urls.py: create an URL to the `logout_user` view function.
-71. website/views.py: use Django's logout function to log the user out, showing a success message, and `redirect` to the home page.
+71. website/views.py: use Django's logout function to log the user out, showing a success message, and `redirect` to the `home` page.
 72. website/templates/navbar.html: change bootstrap Link `nav-item` `a` tag to Logout and `href` to the logout page.
 73. website/templates/navbar.html: `if` user is logged in, the `nav-item` should be Logout, `else`, it should be Login.
 
@@ -148,7 +148,7 @@ We can add users manually through the admin section, but we also want people to 
 85. website/forms.py: create a constructor in the `SignUpForm` class to initialize the variables `username`, `password1` and `password2`.
 86. website/views.py: import the `SignUpForm` class and check if the HTTP request method is `POST` or `GET` inside the `register_user` view function.
 87. website/views.py: if `POST` (user clicking the Submit button), create a `SignUpForm` object with data from the request.
-88. website/views.py: if the form is `valid`, save it and `authenticate`/`login` the user, showing a success message, and redirect to the home page.
+88. website/views.py: if the form is `valid`, save it and `authenticate`/`login` the user, showing a success message, and redirect to the `home` page.
 89. website/views.py: `else` (if HTTP request method is not `POST` - user accessing the register page), create a `SignUpForm` object and render the `register.html` page, filling the context dictionary with the form (it passes the form to the register page so we can do something with it there).
 90. website/views.py: repeat the `return` render outside the `if`/`else` statement, so the page is reaload in case of errors.
 91. website/templates/register.html: create a form with HTTP `POST` method inside the block content, pointing to the same view (empty `action`).
@@ -169,11 +169,8 @@ We can add users manually through the admin section, but we also want people to 
 
 101. website/views.py: import `Record` class from `models.py` and create a `records` variable to grab everything that is currently on the table.
 102. website/views.py: pass the `records` variable as the context dictionary in the `render` function that is after user's authentication, so we can do something with it at `index.html`.
-103. website/templates/index.html: inside the `if user.is_authenticated` block, create an `if records` and `for record` blocks to show each record in the home page.
+103. website/templates/index.html: inside the `if user.is_authenticated` block, create an `if records` and `for record` blocks to show each record in the `home` page.
 104. website/templates/index.html: printing `{{ record }}` shows only the `first_name` and `last_name`, as defined at `models.py` `__str__` function, so we print each item separately.
-
-## Bootstrap Table
-
 105. https://getbootstrap.com: Docs -> Content (Tables) -> Copy to clipboard (Overview)
 106. website/templates/index.html: Paste code inside the `if use.is_authenticated` block, change bootstrap's first row headers and move the `if records` block to bootstrap's `tbody`, removing bootstrap's sample rows.
 107. website/templates/index.html: change the `table` `class` to the desired bootstap styling (`table-striped` `table-hover` `table-bordered`) and `thead` `class` to `table-dark`.
@@ -185,23 +182,35 @@ We can add users manually through the admin section, but we also want people to 
 110. website/templates: New File -> record.html
 111. website/views.py: add the pk as a `customer_record` parameter and check if user is authenticated.
 112. website/views.py: create a variable to get a single specific object based on its id, and render the `customer.html` page.
-113. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the home page (login page).
+113. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the `home` page (login page).
 114. website/templates/record.html: `extends base.html` and add a `block content` to be pulled.
 115. website/templates/index.html: add an `a` tag inside the `record.id` `th` tag with `href` to `record/id`.
 116. website/templates/record.html: call `customer_record` passed as context at `customer_record` view function inside the `block content`, but with separate data.
-
-## Bootstrap Card
-
 117. https://getbootstrap.com: Docs -> Components (Card) -> Copy to clipboard (Header and footer)
 118. website/templates/record.html: move `id` + `first_name` + `last_name` to the `card-header`.
 119. website/templates/record.html: move the rest to the `card-body` each one as a `card-text`, so there is some spacing between lines and remove the `card-title`.
-119. website/templates/record.html: move the button out of the `card` with `href` back to the home page.
+120. website/templates/record.html: move the button out of the `card` with `href` back to the `home` page.
 
 ## Delete Record
 
-120. website/templates/record.html: include a delete button.
-121. website/views.py: create `delete_record` view function.
-122. website/urls.py: create an URL to the `delete_record` view function, passing an integer as a primary key (pk).
-123. website/views.py: add the pk as a `delete_record` parameter and check if user is authenticated.
-124. website/views.py: create a variable to get a single specific object based on its id and delete it, sending a message and redirect to the home page.
-125. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the home page (login page).
+121. website/templates/record.html: include a delete button.
+122. website/views.py: create `delete_record` view function.
+123. website/urls.py: create an URL to the `delete_record` view function, passing an integer as a primary key (pk).
+124. website/views.py: add the pk as a `delete_record` parameter and check if user is authenticated.
+125. website/views.py: create a variable to get a single specific object based on its id and delete it, sending a message and redirect to the `home` page.
+126. website/views.py: `else` (if user is not authenticated), show an error message and `redirect` to the `home` page (login page).
+
+## Add Record
+
+127. website/views.py: create `add_record` view function.
+128. website/urls.py: create an URL to the `add_record` view function.
+129. website/templates: New File -> add_record.html
+130. website/views.py: `return` render add_record.html at `add_record` view function.
+131. website/templates/add_record.html: `extends base.html` and add a `block content` to be pulled.
+132. website/templates/navbar.html: create a link to add a new record, if user is logged in.
+133. website/templates/add_record.html: create a form with HTTP `POST` method inside the block content, pointing to the `add_record` page, with an Add Record button.
+134. website/forms.py: import `Record` and create an `AddRecordForm` class inheriting from `forms.ModelForm`.
+135. website/forms.py: create the `TextInput` widgets and a class `Meta` to set the form's model and fields (using exclude selects which fields not to be included).
+136. website/views.py: import the `AddRecordForm` class and `if use.is_authenticated` + HTTP request method is `POST` (user clicking the Submit button) + form is `valid`, save it, showing a success message, and redirect to the `home` page.
+137. website/views.py: if HTTP request method is not `POST` (user accessing the `add_record` page), create an `AddRecordForm(None)` object and render the `add_record.html` page, filling the context dictionary with the form (it passes the form to the `add_record` page so we can do something with it there).
+138. website/templates/add_record.html: render the form as paragraph (`form.as_p`) after csrf_token.
