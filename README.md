@@ -208,9 +208,22 @@ We can add users manually through the admin section, but we also want people to 
 130. website/views.py: `return` render add_record.html at `add_record` view function.
 131. website/templates/add_record.html: `extends base.html` and add a `block content` to be pulled.
 132. website/templates/navbar.html: create a link to add a new record, if user is logged in.
-133. website/templates/add_record.html: create a form with HTTP `POST` method inside the block content, pointing to the `add_record` page, with an Add Record button.
+133. website/templates/add_record.html: create a form with HTTP `POST` method inside the block content, pointing to the `add_record` page, with a Submit button.
 134. website/forms.py: import `Record` and create an `AddRecordForm` class inheriting from `forms.ModelForm`.
 135. website/forms.py: create the `TextInput` widgets and a class `Meta` to set the form's model and fields (using exclude selects which fields not to be included).
 136. website/views.py: import the `AddRecordForm` class and `if use.is_authenticated` + HTTP request method is `POST` (user clicking the Submit button) + form is `valid`, save it, showing a success message, and redirect to the `home` page.
 137. website/views.py: if HTTP request method is not `POST` (user accessing the `add_record` page), create an `AddRecordForm(None)` object and render the `add_record.html` page, filling the context dictionary with the form (it passes the form to the `add_record` page so we can do something with it there).
 138. website/templates/add_record.html: render the form as paragraph (`form.as_p`) after csrf_token.
+
+## Update Record
+
+139. website/views.py: create `update_record` view function.
+140. website/urls.py: create an URL to the `update_record` view function, passing an integer as a primary key (pk).
+141. website/templates/record.html: create an Update Record button to the `update_record` page.
+141. website/templates: New File -> update_record.html
+142. website/templates/update_record.html: `extends base.html` and add a `block content` to be pulled.
+143. website/views.py: add the pk as a `update_record` parameter and check if user is authenticated.
+144. website/views.py: create a variable to get a single specific object based on its id, create a form variable with `POST` data, instancing the `current_record` (user clicking the Submit button) and if form is `valid`, save it, showing a success message, and redirect to the `home` page.
+145. website/views.py: if HTTP request method is not `POST` (user accessing the `update_record` page), create an `AddRecordForm(None)` object instancing the `current_record` and render the `update_record.html` page, filling the context dictionary with the form (it passes the form to the `update_record` page so we can do something with it there).
+146. website/templates/update_record.html: create a form with HTTP `POST` method inside the block content, with a Back and Update buttons.
+147. website/templates/update_record.html: render the form as paragraph (`form.as_p`) after csrf_token.
